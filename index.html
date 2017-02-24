@@ -1,0 +1,116 @@
+<html>
+
+    <head>
+        <title></title>
+        <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .left {
+            position: fixed;
+            width: 250px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            background: #F0F0F0;
+        }
+        
+        .right {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 250px;
+            width: 80%;
+            background: #fff;
+        }
+        
+        .nav li {
+            position: relative;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        
+        .nav li.active {
+            background: #E0EBF7;
+        }
+        
+        .nav li .caret-left {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 16px;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-right: 4px solid #fff;
+        }
+        
+        .nav li.active .caret-left {
+            display: block;
+        }
+        
+        .content li {
+            display: none;
+        }
+        
+        .content li.active {
+            display: block;
+        }
+    </style>
+
+    <body>
+        <div class="left">
+            <ul class="nav">
+                <li class="item active">
+                    <a href="#li0">item0</a><span class="caret-left"></span></li>
+                <li class="item">
+                    <a href="#li1">item1</a><span class="caret-left"></span></li>
+                <li class="item">
+                    <a href="#li2">item2</a><span class="caret-left"></span></li>
+                <li class="item">
+                    <a href="#li3">item3</a><span class="caret-left"></span></li>
+                <li class="item">
+                    <a href="#li4">item4</a><span class="caret-left"></span></li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul class="content">
+                <li id="li0" class="active">content0</li>
+                <li id="li1">content1</li>
+                <li id="li2">content2</li>
+                <li id="li3">content3</li>
+                <li id="li4">content4</li>
+            </ul>
+        </div>
+        <script>
+            $(document).ready(
+                function() {
+                    $('.nav li').on('click', function() {
+                        if(!$(this).hasClass('active')) {
+                            $(this).addClass('active').siblings().removeClass('active');
+                            var temp = $(this).find('a').attr('href').slice(1);
+                            $('.content li[id = ' + temp + ']').addClass('active').siblings().removeClass('active');
+                        }
+                    });
+                }
+            );
+        </script>
+    </body>
+
+</html>
